@@ -7,7 +7,7 @@ const app = express();
 const server = require('http').Server(app);
 const io = require('socket.io')(server);
 
-mongoose.connect('mongodb://localhost:27017/objeto', {
+mongoose.connect('mongodb://localhost:27017/financial', {
   useNewUrlParser: true
 });
 
