@@ -1,0 +1,18 @@
+{
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "modules": true,
+      "experimentalObjectRestSpread": true
+    }
+  },
+  "extends": [
+    "semistandard"
+  ],
+  "rules": {
+    "comma-dangle": 0,
+    "no-unused-vars": "off",
+    "no-unexpected-multiline": "warn"
+  }
+}
