@@ -12,6 +12,15 @@ module.exports = {
         return res.json(utils.handleSuccess(model));
       });
   },
+  async findUserById (req, res) {
+    const user = await User
+      .findOne({ _id: req.params.id }, (err, data) => {
+        if (err) return res.json(utils.handleError(err));
+        if (data) return res.json(utils.handleSuccess(data));
+        res.status(404);
+        return res.json(utils.handleError('user not found'));
+      });
+  },
   async login (req, res) {
     const access = { email: req.body.email, password: req.body.password };
     const user = await User
