@@ -4,14 +4,12 @@ const utils = require('../utils/utils');
 
 module.exports = {
   async accountsByUserId (req, res) {
-    console.log(req);
-    const accounts = await Account
-      .find({ user: { _id: req.params.userId } }, (err, data) => {
-        if (err) return res.json(utils.handleError(err));
-        if (data.length > 0) return res.json(utils.handleSuccess(data));
-        res.status(404);
-        return res.json(utils.handleError('No accounts for this user'));
-      });
+    await Account.find({ user: { _id: req.params.userId } }, (err, data) => {
+      if (err) return res.json(utils.handleError(err));
+      if (data.length > 0) return res.json(utils.handleSuccess(data));
+      res.status(404);
+      return res.json(utils.handleError('No accounts for this user'));
+    });
   },
   async store (req, res) {
     await User.findOne({ _id: req.body.user }, (err, data) => {

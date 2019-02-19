@@ -1,10 +1,14 @@
 const Transaction = require('../models/Transaction');
+const Account = require('../models/Account');
+const utils = require('../utils/utils');
 
 module.exports = {
   async listByAccountId (req, res) {
-    console.log(req);
-    const transactions = await Transaction.find({ account: { _id: req.params.accountId } });
-    return res.json(transactions);
+    await Transaction
+      .find({ account: { _id: req.params.accountId } }, (err, data) => {
+        if (err) return res.json(utils.handleError(err));
+        return res.json(utils.handleSuccess(data));
+      });
   },
   async store (req, res) {
     const transaction = await Transaction.create(req.body);
