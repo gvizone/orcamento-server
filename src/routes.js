@@ -15,5 +15,6 @@ routes.post('/account', AccountController.store);
 const TransactionController = require('./controllers/TransactionController');
 routes.get('/transaction/:accountId', TransactionController.listByAccountId);
 routes.post('/transaction', TransactionController.store);
+routes.put('/transaction/category', TransactionController.updateCategory);
 
 module.exports = routes;

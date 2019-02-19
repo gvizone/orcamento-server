@@ -23,5 +23,16 @@ module.exports = {
         return res.json(utils.handleSuccess(data));
       });
     });
+  },
+  async updateCategory (req, res) {
+    const transaction = req.body;
+    await Transaction.findByIdAndUpdate(
+      transaction.id,
+      { category: transaction.category, subCategory: transaction.subCategory },
+      (err, data) => {
+        if (err) return res.json(utils.handleError(err));
+        return res.json(utils.handleSuccess(data));
+      }
+    );
   }
 };
