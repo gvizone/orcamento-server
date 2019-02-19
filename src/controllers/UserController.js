@@ -18,7 +18,7 @@ module.exports = {
         if (err) return res.json(utils.handleError(err));
         if (data) return res.json(utils.handleSuccess(data));
         res.status(404);
-        return res.json(utils.handleError('user not found'));
+        return res.json(utils.handleError('User not found'));
       });
   },
   async login (req, res) {
@@ -28,7 +28,7 @@ module.exports = {
         if (err) return res.json(utils.handleError(err));
         if (data) return res.json(utils.handleSuccess(data));
         res.status(404);
-        return res.json(utils.handleError('user or password invalid'));
+        return res.json(utils.handleError('User or password invalid'));
       });
   },
   async store (req, res) {
