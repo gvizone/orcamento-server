@@ -19,6 +19,38 @@ module.exports = {
         return res.json(utils.handleSuccess(data));
       });
   },
+  async listByCategory (req, res) {
+    const count = Object.keys(req.body).length;
+    if (count !== 2 || !(req.body.accountId) || !(req.body.category)) {
+      res.status(400);
+      return res.json(utils.handleError('Only accountId and category expected'));
+    }
+    await Transaction
+      .find({ account: { _id: req.body.accountId }, category: req.body.category }, (err, data) => {
+        if (err) return res.json(utils.handleError(err));
+        if (!data || data.length === 0) {
+          res.status(404);
+          return res.json(utils.handleError('No Transactions Found'));
+        }
+        return res.json(utils.handleSuccess(data));
+      });
+  },
+  async listBySubCategory (req, res) {
+    const count = Object.keys(req.body).length;
+    if (count !== 2 || !(req.body.accountId) || !(req.body.subcategory)) {
+      res.status(400);
+      return res.json(utils.handleError('Only accountId and subcategory expected'));
+    }
+    await Transaction
+      .find({ account: { _id: req.body.accountId }, subCategory: req.body.subcategory }, (err, data) => {
+        if (err) return res.json(utils.handleError(err));
+        if (!data || data.length === 0) {
+          res.status(404);
+          return res.json(utils.handleError('No Transactions Found'));
+        }
+        return res.json(utils.handleSuccess(data));
+      });
+  },
   async store (req, res) {
     await Account.findOne({ _id: req.body.account }, (err, data) => {
       if (err) return res.json(utils.handleError(err));

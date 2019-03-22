@@ -13,7 +13,9 @@ routes.get('/account/:userId', AccountController.accountsByUserId);
 routes.post('/account', AccountController.store);
 
 const TransactionController = require('./controllers/TransactionController');
-routes.get('/transaction/:accountId', TransactionController.listByAccountId);
+routes.post('/transaction/listById', TransactionController.listByAccountId);
+routes.post('/transaction/listByCategory', TransactionController.listByCategory);
+routes.post('/transaction/listBySubCategory', TransactionController.listBySubCategory);
 routes.post('/transaction', TransactionController.store);
 routes.put('/transaction/category', TransactionController.updateCategory);
 
