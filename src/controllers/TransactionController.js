@@ -10,7 +10,7 @@ module.exports = {
       return res.json(utils.handleError('Only accountId expected'));
     }
     await Transaction
-      .find({ account: { _id: req.params.accountId } }, (err, data) => {
+      .find({ account: { _id: req.body.accountId } }, (err, data) => {
         if (err) return res.json(utils.handleError(err));
         return res.json(utils.handleSuccess(data));
       });
