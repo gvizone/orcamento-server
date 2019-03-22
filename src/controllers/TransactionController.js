@@ -4,6 +4,11 @@ const utils = require('../utils/utils');
 
 module.exports = {
   async listByAccountId (req, res) {
+    const count = Object.keys(req.body).length;
+    if (count !== 1 || !(req.body.accountId)) {
+      res.status(400);
+      return res.json(utils.handleError('Only accountId expected'));
+    }
     await Transaction
       .find({ account: { _id: req.params.accountId } }, (err, data) => {
         if (err) return res.json(utils.handleError(err));
