@@ -12,6 +12,10 @@ module.exports = {
     await Transaction
       .find({ account: { _id: req.body.accountId } }, (err, data) => {
         if (err) return res.json(utils.handleError(err));
+        if (!data || data.length === 0) {
+          res.status(404);
+          return res.json(utils.handleError('No Transactions Found'));
+        }
         return res.json(utils.handleSuccess(data));
       });
   },
